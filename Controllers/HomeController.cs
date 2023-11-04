@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using test.Models;
 
 namespace test.Controllers;
@@ -7,16 +8,18 @@ namespace test.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly ApplicationDBContext _context;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, ApplicationDBContext context)
     {
         _logger = logger;
+        _context = context;
     }
-
     public IActionResult Index()
     {
         return View();
     }
+  
 
     public IActionResult Privacy()
     {
